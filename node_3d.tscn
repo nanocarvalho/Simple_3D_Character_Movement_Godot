@@ -1,0 +1,122 @@
+[gd_scene load_steps=14 format=3 uid="uid://bdrxxlybbmcky"]
+
+[ext_resource type="PackedScene" uid="uid://dymom8luqvlxv" path="res://character_body_3d.tscn" id="1_sk4f7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5anx7"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_pfdho"]
+sky_material = SubResource("ProceduralSkyMaterial_5anx7")
+
+[sub_resource type="Environment" id="Environment_yvu06"]
+background_mode = 1
+background_color = Color(0.490196, 0.74902, 0.815686, 1)
+sky = SubResource("Sky_pfdho")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qynqv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l26gk"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.0862745, 0.0862745, 0.0862745, 1)
+roughness = 0.0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_lenno"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gl1tl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mye26"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.780392, 0.654902, 0, 1)
+roughness = 0.0
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_8kmap"]
+data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mbjj"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.416102, 0.399137, 1, 1)
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qap37"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0.647059, 0.603922, 1)
+roughness = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5ela"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0, 0.619608, 0.337255, 1)
+roughness = 0.0
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.01704, -6.35118)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_yvu06")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 10, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_qynqv")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_l26gk")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D2"]
+shape = SubResource("ConcavePolygonShape3D_lenno")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_sk4f7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75398, 0.660012, 0.549499)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 2.89698, 1, 8.9855)
+mesh = SubResource("BoxMesh_gl1tl")
+surface_material_override/0 = SubResource("StandardMaterial3D_mye26")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_8kmap")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 5.95758, 2.33455, 8.9855)
+mesh = SubResource("BoxMesh_gl1tl")
+surface_material_override/0 = SubResource("StandardMaterial3D_2mbjj")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D"]
+transform = Transform3D(0.729721, 0.683745, 0, -0.683745, 0.729721, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_8kmap")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 5.95758, 4.58527, 4.68325)
+mesh = SubResource("BoxMesh_gl1tl")
+surface_material_override/0 = SubResource("StandardMaterial3D_qap37")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_8kmap")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 5.95758, 6.45745, 0.292804)
+mesh = SubResource("BoxMesh_gl1tl")
+surface_material_override/0 = SubResource("StandardMaterial3D_v5ela")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_8kmap")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0209271, -0.997534, -0.0669873, -0.711976, -0.0619077, 0.699469, -0.701892, 0.0330555, -0.711516, 0, 22.7446, -28)
+light_energy = 1.173
+light_indirect_energy = 0.0

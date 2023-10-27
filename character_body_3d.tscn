@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dymom8luqvlxv"]
+
+[ext_resource type="Script" path="res://character_body_3d.gd" id="1_om4of"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8nkf6"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1wutm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_neik8"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.596078, 0.227451, 0.294118, 1)
+roughness = 0.0
+
+[sub_resource type="PrismMesh" id="PrismMesh_rn1si"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_204iu"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.898039, 0.717647, 0, 1)
+roughness = 0.0
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+collision_layer = 2
+script = ExtResource("1_om4of")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12337, 0)
+shape = SubResource("BoxShape3D_8nkf6")
+
+[node name="character_container" type="Node3D" parent="."]
+
+[node name="body" type="MeshInstance3D" parent="character_container"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00614, 0)
+mesh = SubResource("CapsuleMesh_1wutm")
+surface_material_override/0 = SubResource("StandardMaterial3D_neik8")
+
+[node name="direction_pointer" type="MeshInstance3D" parent="character_container"]
+transform = Transform3D(0.75, 0, 0, 0, -3.27835e-08, 0.11, 0, -0.75, -4.80825e-09, 0, 1, -1)
+mesh = SubResource("PrismMesh_rn1si")
+surface_material_override/0 = SubResource("StandardMaterial3D_204iu")
+
+[node name="CameraArm" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.90644, 0.422334, 0, -0.422334, 0.90644, 0, 1.87371, 0.191583)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraArm"]
+spring_length = 4.0
+margin = 0.2
+
+[node name="Camera3D" type="Camera3D" parent="CameraArm/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.99245)
