@@ -9,4 +9,4 @@ Resources I used to try and understand how to make the move and camera, in the e
 - https://kidscancode.org/godot_recipes/4.x/3d/rotate_interpolate/index.html
 - [KidsCanCode: Godot 4 3d character movement](https://www.youtube.com/watch?v=EP5AYllgHy8)
 - [Lukky Godot 4 Third Person Controller](https://youtu.be/EP5AYllgHy8)
-On the Lukky tutorial, the look_at(position + direction) not worked, until I saw a comment saying that the look_at only works in global space, so needs to be look_at(global_position + direction), but in my tests this is  instant rotation haha.
+On the Lukky tutorial, the look_at(position + direction) not worked, until I saw a comment saying that the look_at works in global space, so needs to be look_at(global_position + direction), but in my tests this is  instant rotation haha.
