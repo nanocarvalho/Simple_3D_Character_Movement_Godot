@@ -1,5 +1,7 @@
 # A simple 3d character controller for godot
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J740Q60)
+
 ![](https://github.com/nanocarvalho/Simple_3D_Character_Movement_Godot/blob/main/demonstration.gif)
 
 
